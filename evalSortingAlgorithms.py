@@ -68,7 +68,7 @@ def quicksort(array):
 
 # Main code begins
 
-# Set globals
+# Set global vaiables
 
 while True:
     print ("\n\n")
