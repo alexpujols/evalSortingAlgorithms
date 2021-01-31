@@ -10,9 +10,11 @@ __status__ = "Prototype"
 # Import modules declarations
 from random import randint
 from collections import Counter
-from memory_profiler import memory_usage
+#1from memory_profiler import memory_usage
 from time import sleep
 import timeit
+import string
+import random
 
 # Function declarations
 
@@ -25,6 +27,11 @@ def input_validate():
         except:
             print ("Incorrect value! Please make a new selection")
     return validate
+# Function to return a random string
+def random_string(size):
+    temp_string = ' '.join([random.choice(string.ascii_lowercase) for i in range(size)])
+    array = temp_string.split()
+    return array
 # Function to perform bubble sort
 def bubble_sort(array):
     n = len(array)
@@ -50,7 +57,7 @@ def quicksort(array):
     pivot = 0
     # Begin sorting values into temporary arrays
     for i in range(1, n):
-        if array[i] <= array [0]:
+        if array[i] <= array[0]:
             pivot += 1
             temp = array[i]
             array[i] = array[pivot]
@@ -65,13 +72,13 @@ def quicksort(array):
     # Assemble sorted array and return back to main function
     array = left + [array[pivot]] + right
     return array
-
 # Main code begins
 
 # Set global vaiables
+_samples_ = 10
 
 while True:
-    print ("\n\n")
+    print ("\n")
     print ("Hi, which sort method would you like to run?")
     print ("1 - Bubble Sort (Integers)")
     print ("2 - Qucksort (Integers)")
@@ -82,46 +89,55 @@ while True:
     # Take user input and validate
     algorithm = input_validate()
 
-    #If user selects spacial analysis
-    if (selection == 1):
-        print ("\n You selected bubble sort for integers\n")
+    #If user selects integer bubble sort
+    if (algorithm == 1):
+        print ("\nYou selected bubble sort for integers\n")
         print ("What is the size of the array you wish to create?")
         size = input_validate()
         array = [randint(1, 10000) for i in range(size)]
-        print ("\n AFTER \n", array)
-        times = timeit.repeat("bubble_sort(array)", setup="from __main__ import bubble_sort, array", number=samples)
-        print ("\n AFTER \n", array)
-        print ("\n The minimum time to execute across ", samples, " samples was: ", min(times))
-    # If user selects insertion sort
+        print ("\nBEFORE\n", array)
+        # To time the execution of the algorithm for analysis
+        times = timeit.repeat("bubble_sort(array)", setup="from __main__ import bubble_sort, array", number=_samples_)
+        array = bubble_sort(array)
+        print ("\nAFTER\n", array)
+        print (f"\nThe minimum time to execute across {_samples_} samples was: {format(min(times), '.10f')} seconds!")
+    # If user selects integer quicksort
     if (algorithm == 2):
-        print ("\n You selected quicksort for integers \n")
+        print ("\nYou selected quicksort for integers \n")
         print ("What is the size of the array you wish to create?")
         size = input_validate()
-        array = [randint(1, 10000) for i in range(size)]
+        array_string = [randint(1, 10000) for i in range(size)]
+        print ("\n BEFORE \n", array)
+        # To time the execution of the algorithm for analysis
+        times = timeit.repeat("quicksort(array)", setup="from __main__ import quicksort, array", number=_samples_)
+        array = quicksort(array)
         print ("\n AFTER \n", array)
-        times = timeit.repeat("quicksort(array)", setup="from __main__ import quicksort, array", number=samples)
-        print ("\n AFTER \n", array)
-        print ("\n The minimum time to execute across ", samples, " samples was: ", min(times))
-    # If user selects quicksort
+        print (f"\nThe minimum time to execute across {_samples_} samples was: {format(min(times), '.10f')} seconds!")
+    # If user selects string bubblesort
     if (algorithm == 3):
-        print ("\n You selected bubble sort for strings \n")
+        print ("\nYou selected bubble sort for strings \n")
         print ("What is the size of the array you wish to create?")
         size = input_validate()
-        array = [randint(1, 10000) for i in range(size)]
+        array = random_string(size)
         print ("\n BEFORE \n", array)
-        times = timeit.repeat("bubble_sort(array)", setup="from __main__ import bubble_sort, array", number=samples)
+        # To time the execution of the algorithm for analysis
+        times = timeit.repeat("bubble_sort(array)", setup="from __main__ import bubble_sort, array", number=_samples_)
+        array = bubble_sort(array)
         print ("\n AFTER \n", array)
-        print ("\n The minimum time to execute across ", samples, " samples was: ", min(times))
+        print (f"\nThe minimum time to execute across {_samples_} samples was: {format(min(times), '.10f')} seconds!")
+    # If user selects string quicksort
     if (algorithm == 4):
-        print ("\n You selected quicksort for strings \n")
+        print ("\nYou selected quicksort for strings \n")
         print ("What is the size of the array you wish to create?")
         size = input_validate()
-        array = [randint(1, 10000) for i in range(size)]
+        array = random_string(size)
         print ("\n BEFORE \n", array)
-        times = timeit.repeat("quicksort(array)", setup="from __main__ import quicksort, array", number=samples)
+        # To time the execution of the algorithm for analysis
+        times = timeit.repeat("quicksort(array)", setup="from __main__ import quicksort, array", number=_samples_)
+        array = quicksort(array)
         print ("\n AFTER \n", array)
-        print ("\n The minimum time to execute across ", samples, " samples was: ", min(times))
+        print (f"\nThe minimum time to execute across {_samples_} samples was: {format(min(times), '.10f')} seconds!")
     #If user selects exit
-    if (selection == 0):
+    if (algorithm == 0):
         print ("\n You have chosen to leave the program.  Goodbye! \n")
         break
