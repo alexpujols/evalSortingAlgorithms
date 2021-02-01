@@ -1,1 +1,1 @@
-# evalSearchingAlgorithms
+# evalSortingAlgorithms
