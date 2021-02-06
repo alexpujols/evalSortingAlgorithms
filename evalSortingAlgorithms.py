@@ -1,12 +1,33 @@
 ##!/usr/bin/env python
+'''
+                      ::::::
+                    :+:  :+:
+                   +:+   +:+
+                  +#++:++#++:::::::
+                 +#+     +#+     :+:
+                #+#      #+#     +:+
+               ###       ###+:++#""
+                         +#+
+                         #+#
+                         ###
+'''
 __author__ = "Alex Pujols"
-__copyright__ = "Copyright 2021, Evaluating Sorting Algorithms Project TIM-6110 wk5"
+__copyright__ = "TBD"
 __credits__ = ["Alex Pujols"]
 __license__ = "GPL"
 __version__ = "1.0"
 __maintainer__ = "Alex Pujols"
 __email__ = "alex.pujols@gmail.com"
 __status__ = "Prototype"
+
+'''
+Title	      :	{TBD}
+Date		  :	{XX-XX-20XX}
+Description   :	{TBD}
+Options	      :	{TBD}
+Notes	      :	{TBD}
+'''
+
 # Import modules declarations
 from random import randint
 from collections import Counter
